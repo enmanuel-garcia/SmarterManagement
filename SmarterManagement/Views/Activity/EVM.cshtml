@@ -1,0 +1,168 @@
+﻿@model SmarterManagement.Models.EVMModel
+@using SmarterManagement.Models
+
+@{
+    ViewBag.Title = "EVM";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+
+    <center>
+        <h2>Earn Value Management Analysis</h2>
+    </center>
+
+    <hr />
+
+    <div style="position:relative; width: 100%;">
+
+        <div style="width:800px; margin-left:auto; margin-right:auto;">
+
+            <dl class="dl-horizontal" style="float:left; margin-top:40px; width:40%;">
+
+                <dt>
+                    Planned Value (PV)
+                </dt>
+
+                <dd>
+                    @EVMModel.cast(Model.pv)
+                </dd>
+
+                <dt>
+                    Actual Cost (AC)
+                </dt>
+
+                <dd>
+                    @EVMModel.cast(Model.ac)
+                </dd>
+
+                <dt>
+                    Earned Value (EV)
+                </dt>
+
+                <dd>
+                    @EVMModel.cast(Model.ev)
+                </dd>
+
+                <dt>
+                    Schedule Variance (SV)
+                </dt>
+
+                <dd>
+                    @EVMModel.cast(Model.sc)
+                </dd>
+
+                <dt>
+                    Cost Variance (CV)
+                </dt>
+
+                <dd>
+                    @EVMModel.cast(Model.cv)
+                </dd>
+
+                <dt>
+                    Schedule Performance Index (SPI)
+                </dt>
+
+                <dd>
+                    @EVMModel.cast(Model.spi)
+                </dd>
+
+                <dt>
+                    Cost Performance Index (CPI)
+                </dt>
+
+                <dd>
+                    @EVMModel.cast(Model.cpi)
+                </dd>
+
+            </dl>
+
+            <div style="width:400px; height:300px; float:left;">
+
+                @{
+                var filePathName = "~/Content/charts/chart01.png";
+                var myChart = new Chart(width: 400, height: 300, theme: ChartTheme.Green)
+                    .AddTitle("EVM")
+                    .AddSeries(
+                        chartType: "column",
+                        xValue: new[] { "AC", "EV", "PV", "CV", "SC", "CPI", "SPI" },
+                        yValues: new[] { Model.ac, Model.ev, Model.pv, Model.cv, Model.sc, Model.cpi, Model.spi },
+                        name: "EVM")
+                    .Save(filePathName);
+                filePathName = filePathName.Replace("~/", "../");
+                }
+
+                <img src="@filePathName" width="400" height="300" />
+            </div>
+
+        </div>
+
+    </div>
+
+    <div style="position:relative; width: 100%;">
+
+        <div style="width:800px; height:600px; margin-left:auto; margin-right:auto;">
+            @{
+                var filePathNameWeek = "~/Content/charts/chartWeek01.png";
+                List<EVMModel> byWeek = (List<EVMModel>)ViewBag.byWeek;
+                if (byWeek == null)
+                {
+                    Response.Redirect("~/Activity");
+                }
+                else
+                {
+                    var myChartWeek = new Chart(width: 800, height: 600, theme: ChartTheme.Vanilla3D)
+                    .AddTitle("EVM by Weeks");
+                    double[] acValues = new double[byWeek.Count];
+                    double[] evValues = new double[byWeek.Count];
+                    double[] pvValues = new double[byWeek.Count];
+                    double[] cvValues = new double[byWeek.Count];
+                    double[] scValues = new double[byWeek.Count];
+                    double[] cpiValues = new double[byWeek.Count];
+                    double[] spiValues = new double[byWeek.Count];
+                    string[] xValues = new string[byWeek.Count];
+                    for (int i = 0; i < byWeek.Count; i++)
+                    {
+                        acValues[i] = byWeek[i].ac;
+                        evValues[i] = byWeek[i].ev;
+                        pvValues[i] = byWeek[i].pv;
+                        cvValues[i] = byWeek[i].cv;
+                        scValues[i] = byWeek[i].sc;
+                        cpiValues[i] = byWeek[i].cpi;
+                        spiValues[i] = byWeek[i].spi;
+                        xValues[i] = "Wk " + (i + 1);
+                    }
+                    myChartWeek.AddSeries(chartType: "line", name: "AC", yValues: acValues, xValue: xValues);
+                    myChartWeek.AddSeries(chartType: "line", name: "EV", yValues: evValues, xValue: xValues);
+                    myChartWeek.AddSeries(chartType: "line", name: "PV", yValues: pvValues, xValue: xValues);
+                    //myChartWeek.AddSeries(chartType: "line", name: "CV", yValues: cvValues, xValue: xValues);
+                    //myChartWeek.AddSeries(chartType: "line", name: "SC", yValues: scValues, xValue: xValues);
+                    //myChartWeek.AddSeries(chartType: "line", name: "CPI", yValues: cpiValues, xValue: xValues);
+                    //myChartWeek.AddSeries(chartType: "line", name: "SPI", yValues: spiValues, xValue: xValues);
+                    myChartWeek.AddLegend("EVM");
+                    myChartWeek.Save(filePathNameWeek);
+                    filePathNameWeek = filePathNameWeek.Replace("~/", "../");
+                }
+            }
+            <hr />
+            <img src="@filePathNameWeek" width="800" height="600" />
+        </div>
+
+    </div>
+
+    <br /><br /><br />
+
+    <div class="row">
+        <p>
+            @Html.ActionLink("Back to Upload", "Index")
+        </p>
+    </div>
+
+</body>
+</html>

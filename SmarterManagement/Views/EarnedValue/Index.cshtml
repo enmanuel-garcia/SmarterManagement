@@ -1,0 +1,127 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<center>
+    <h2>Valor Ganado (EV)</h2>
+</center>
+
+<div class="row">
+    <div class="col-xs-8 col-sm-7 col-sm-6 col-md-4">
+        <div class="input-group">
+            <span class="input-group-btn">
+                <a class="btn btn-success btnEvAdd" data-toggle="modal" data-target="#newModal">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                </a>
+            </span>
+            <select class="form-control ddlProjects" id="ddlProjects"></select>
+            <span class="input-group-btn">
+                <a class="btn btn-default btnEvFind" data-loading-text="Buscando...">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>  Buscar
+                </a>
+            </span>
+        </div>
+    </div>
+</div>
+
+<hr />
+
+@Html.Partial("_TableAlert", "Shared")
+
+<div class="row">
+    <table class="table table-hover table-Ev" data-edit="True">
+        <thead>
+            <tr>
+                <th class="table-action"></th>
+                <th>
+                    WBS
+                </th>
+                <th>
+                    Código
+                </th>
+                <th>
+                    Descripción
+                </th>
+                <th>
+                    Riesgo
+                </th>
+                <th>
+                    TBC
+                </th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Editar</h4>
+            </div>
+            <div class="modal-body">
+                <center>
+                    <div class="spinner edit-loading">
+                        <div class="bounce1"></div>
+                        <div class="bounce2"></div>
+                        <div class="bounce3"></div>
+                    </div>
+                </center>
+                <div class="form-group">
+                    <label for="editProject" class="control-label">Proyecto:</label>
+                    <select class="form-control ddlProjects" id="editProject"></select>
+                    <label for="editRisk" class="control-label">Riesgo:</label>
+                    <select class="form-control ddlRisks" id="editRisk"></select>
+                    <label for="editCode" class="control-label">Código:</label>
+                    <input type="text" class="form-control" id="editCode">
+                    <label for="editWbsCode" class="control-label">WBS:</label>
+                    <input type="text" class="form-control" id="editWbsCode">
+                    <label for="editTbc" class="control-label">TBC:</label>
+                    <input type="number" class="form-control" id="editTbc" min="0" step="1">
+                    <label for="editDescription" class="control-label">Descripción:</label>
+                    <input type="text" class="form-control" id="editDescription">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" data-id="" id="editSave" data-loading-text="Actualizando...">Gardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="newModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Nuevo</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="newProject" class="control-label">Nombre:</label>
+                    <select class="form-control ddlProjects" id="newProject"></select>
+                    <label for="newRisk" class="control-label">Riesgo:</label>
+                    <select class="form-control ddlRisks" id="newRisk"></select>
+                    <label for="newCode" class="control-label">Código:</label>
+                    <input type="text" class="form-control" id="newCode">
+                    <label for="newWbsCode" class="control-label">WBS:</label>
+                    <input type="text" class="form-control" id="newWbsCode">
+                    <label for="newTbc" class="control-label">TBC:</label>
+                    <input type="number" class="form-control" id="newTbc" min="0" step="1">
+                    <label for="newDescription" class="control-label">Descripción:</label>
+                    <input type="text" class="form-control" id="newDescription">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="newSave" data-loading-text="Guardando...">Gardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/EarnedValue")

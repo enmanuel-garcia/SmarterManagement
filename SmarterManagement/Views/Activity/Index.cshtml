@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<center>
+    <h2>Earn Value Management</h2>
+</center>
+
+<form action="activity/UploadFile" method="post" enctype="multipart/form-data">
+    <div style="width:100%">
+        <img style="width:50%; position:relative; float:left" src="~/Content/Images/template.png" />
+        <div style="">
+            <p>Est&eacute; es el Analizador de Valor Ganado</p>
+            <p>
+                <h3> Paso 1</h3>
+                Obtenga la plantilla para iniciar el an&aacute;lisis
+                <a class="btn btn-default" href="~/Content/template.xls"> Download</a>
+            </p>
+            <p>
+                <h3>Paso 2</h3>
+                Una vez suministrado los datos suba el archivo
+                <input class="btn btn-default" type="file" name="file" id="file" value="Subir Archivo"/>
+            </p>
+            <p>
+                <h3>Paso 3</h3>
+                <b>Genere los valores de EVM</b>
+                <input class="btn btn-danger" type="submit" value="Generar" />
+            </p>
+        </div>
+    </div>
+</form>
+
+
+@Scripts.Render("~/bundles/Activity")

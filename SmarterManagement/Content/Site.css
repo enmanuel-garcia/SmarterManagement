@@ -1,0 +1,97 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+.modal-dialog {
+    width: 700px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.table-action {
+    width:70px;
+}
+
+.btnRiskFind.active{
+    background-color:black;
+}
+
+/* Probability impact matrix */
+.probability-impact-matrix span {
+    text-align: center;
+    display: block;
+    line-height: 50px;
+}
+
+.probability-impact-matrix .not-show {
+    border: 0 !important;
+}
+
+.probability-impact-matrix .matrix-row {
+    display: block;
+}
+
+.probability-impact-matrix .matrix-row div {
+    height: 50px;
+    width: 70px;
+    border: 1px solid #333;
+    display: table-cell;
+}
+
+.bg-success {
+    background-color: #3adb76;
+    color: #fff;
+}
+
+.bg-success:hover {
+    color: #000;
+}
+
+.bg-warning {
+    background-color: #ffae00;
+    color: #fff;
+}
+
+.bg-warning:hover {
+    color: #000;
+}
+
+.bg-danger {
+    background-color: #cc4b37;
+    color: #fff;
+}
+
+.bg-danger:hover {
+    color: #000;
+}
+
+.probability-label {
+    transform: rotate(270deg);
+    top: 150px;
+    position: absolute;
+    margin: 0 0 0 -40px;
+    font-size: 18px;
+}
+
+.impact-label {
+    font-size: 18px;
+}

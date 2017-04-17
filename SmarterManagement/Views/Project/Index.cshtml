@@ -1,0 +1,102 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<center>
+    <h2>Proyectos</h2>
+</center>
+
+    <div class="row">
+        <div class="col-xs-8 col-sm-7 col-sm-6 col-md-4">
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <a class="btn btn-success btnProyectAdd" data-toggle="modal" data-target="#newModal">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    </a>
+                </span>
+                <input type="text" class="form-control" placeholder="Nombre" id="txtFind" autocomplete="off">
+                <span class="input-group-btn">
+                    <a class="btn btn-default btnProyectFind" data-loading-text="Buscando...">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>  Buscar
+                    </a>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <hr />
+
+    @Html.Partial("_TableAlert", "Shared")
+
+    <div class="row">
+        <table class="table table-hover table-Proyect" data-edit="True">
+            <thead>
+                <tr>
+                    <th class="table-action"></th>
+                    <th>
+                        Nombre
+                    </th>
+                    <th>
+                        Fecha
+                    </th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Editar</h4>
+                </div>
+                <div class="modal-body">
+                    <center>
+                        <div class="spinner edit-loading">
+                            <div class="bounce1"></div>
+                            <div class="bounce2"></div>
+                            <div class="bounce3"></div>
+                        </div>
+                    </center>
+                    <div class="form-group">
+                        <label for="editName" class="control-label">Nombre:</label>
+                        <input type="text" class="form-control" id="editName">
+                        <label for="editStartDate" class="control-label">Fecha de inicio:</label>
+                        <input type="date" class="form-control" id="editStartDate" >
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" data-id="" id="editSave" data-loading-text="Actualizando...">Gardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="newModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Nuevo</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="newName" class="control-label">Nombre:</label>
+                        <input type="text" class="form-control" id="newName">
+                        <label for="newStartDate" class="control-label">Fecha de inicio:</label>
+                        <input type="date" class="form-control" id="newStartDate">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" id="newSave" data-loading-text="Guardando...">Gardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+@Scripts.Render("~/bundles/Project")

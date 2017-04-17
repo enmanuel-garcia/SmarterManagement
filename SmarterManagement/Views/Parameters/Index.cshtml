@@ -1,0 +1,74 @@
+﻿<script>
+    var dataMatrix = @Html.Raw(Json.Encode(Model));
+</script>
+
+@{
+    ViewBag.Title = "Index";
+}
+<center>
+    <h2>Par&aacute;metros</h2>
+</center>
+
+<div>
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#matrix" aria-controls="Matrix" role="tab" data-toggle="tab">Matriz de probabilidad e impacto</a></li>
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="matrix">
+            <center>
+                <h2>Matriz de probabilidad e impacto</h2>
+            </center>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="row">
+                        <div id="probabilitiesContainer">
+                            <h3>Probabilidades</h3>
+                        </div>
+                        <div class="form-group">
+                            <div class="container-fluid">
+                                <button id="addProbability" class="btn btn-primary" onclick="">Anadir otro</button>
+                            </div>
+                        </div>
+                        <div id="impactsContainer">
+                            <h3>Impactos</h3>
+                        </div>
+                        <div class="form-group">
+                            <div class="container-fluid">
+                                <button id="addImpact" class="btn btn-primary">Anadir otro</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <form class="form-horizontal form-group">
+                        <div class="form-group">
+                            <label class="col-sm-8 control-label">Limite del rango bajo</label>
+                            <div class="col-sm-4">
+                                <input id="lowLimit" type="number" class="form-control" placeholder="valor" min="1" max="99">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-8 control-label">Limite del rango medio</label>
+                            <div class="col-sm-4">
+                                <input id="midLimit" type="number" class="form-control" placeholder="valor" min="1" max="99">
+                            </div>
+                        </div>
+                    </form>
+                    <div class="pull-right">
+                        <div class="col-xs-1">
+                            <p class="probability-label">Probabilidades</p>
+                        </div>
+                        <div class="col-xs-11">
+                            <div class="form-group probability-impact-matrix"></div>
+                            <p class="text-center impact-label">Impactos</p>
+                        </div>
+                        <button id="updateMatrix" class="btn btn-primary pull-right">Actualizar matriz</button>
+                    </div>
+                </div> 
+            </div>        
+        </div>
+    </div>
+
+</div>
+
+@Scripts.Render("~/bundles/Parameters")
